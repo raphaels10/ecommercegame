@@ -1,0 +1,14 @@
+.main-products-container{
+    padding: 5% 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.main-products-title {
+    font-family: 'Russo One';
+    font-size: 48px;
+    margin-top: 30px;
+    color: #555;
+}
+

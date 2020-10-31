@@ -1,0 +1,50 @@
+.card-fixed-size {
+    width: 225px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    margin-left: 5px;
+}
+.card-img-fixed-size {
+    width: 225px;
+    height: 175px;
+    object-fit: cover;
+    
+}
+
+.card-fixed-size a{
+    color: white;
+    text-decoration: none;
+}
+
+.card-title-custom {
+    font-size: 20px;
+    font-family: 'Open Sans';
+    font-weight: 700;
+    color: #eaeaea;
+}
+.outline-green {
+    outline: 1.5px solid rgba(0, 255, 0, .7);
+}
+
+.outline-red {
+    outline: 1.5px solid rgba(255, 0, 0, .7);
+}
+
+.outline-yellow {
+    outline: 1.5px solid rgba(255, 255, 0, .7);
+
+}
+
+.outline-blue {
+    outline: 1.5px solid rgba(0, 0, 255, .7);
+
+}
+
+.outline-purple {
+    outline: 1.5px solid rgba(128, 0, 128, .7)
+}
+
+.outline-orange {
+    outline: 1.5px solid rgba(255, 165, 0, .7)
+
+}

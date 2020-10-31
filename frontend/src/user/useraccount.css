@@ -1,0 +1,164 @@
+div.align-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.my-account {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 22vw 66vw;
+    grid-template-rows: 300px 300px;
+    gap: 20px;
+    grid-template-areas: "profile buy"
+                         "profile sell"
+}
+
+div.my-account > div {
+    border-radius: 20px;
+    background-color: white;
+    
+}
+
+div.profile-info {
+    overflow: hidden;
+    grid-row: 1 / -1;
+    background-color: aqua;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    5px 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    -5px -8.5px 10px rgba(0, 0, 0, 0.06),
+    0 11.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 11px 16px rgba(0, 0, 0, 0.086),
+    0 25px 40px rgba(0, 0, 0, 0.12)
+}
+
+
+
+div.product-buy {
+    overflow-y: auto;
+    grid-row: 1 / 2;
+    box-shadow: 15px 0px 10px rgba(0,0,0, 0.06),
+    -5px 0px 10px rgba(0,0,0, 0.03),
+    0px 5px 10px rgba(0,0,0, 0.06),
+    0px -10px 10px rgba(0,0,0, 0.08)
+}
+
+div.product-sell {
+    overflow-y: auto;
+    grid-row: 2 / 3;
+    box-shadow: 15px 0px 10px rgba(0,0,0, 0.06),
+    -5px 0px 10px rgba(0,0,0, 0.03),
+    0px 10px 10px rgba(0,0,0, 0.08),
+    0px -5px 10px rgba(0,0,0, 0.06)
+}
+
+div.profile-header {
+    height: 275px;
+    margin-top: 25px;
+}
+
+
+div.profile-pic {
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+div.profile-pic img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+div.user-info {
+    max-height: 100px;
+}
+
+div.user-info p{
+    margin: 2px;
+    font-family: 'Open Sans';
+    color: #999;
+}
+
+div.user-info h2 {
+    margin: 5px;
+    font-family: 'Russo One';
+    color: rgb(236, 98, 5)
+}
+
+div.profile-info hr {
+    margin: 0;
+}
+
+.user-menu-list {
+    text-align: left;
+    font-family: 'Open Sans';
+    font-weight: 600;
+    color: #888;
+    padding: 0;
+    margin: 0;
+}
+
+.user-menu-list svg {
+    margin-right: 8px;
+    margin-bottom: 4px;
+}
+
+
+div.profile-info .user-menu-item {
+    list-style: none;
+    transition: all 0.4s;
+}
+
+div.profile-info .user-menu-item button {
+    width: 100%;
+    border: none;
+    text-align: left;
+    height: 63px;
+    padding: 20px;
+}
+
+div.profile-info .user-menu-item:hover {
+    cursor: pointer;
+    background-color:rgb(236, 98, 5);
+    color: white;
+
+}
+
+
+
+.product-table thead tr {
+    border-top: none;
+    border-top-color: transparent;
+    background-color: rgb(230, 172, 14);
+    color: white;
+}
+
+.product-table thead tr th:first-child {
+    border-top-left-radius: 20px;
+}
+
+/* ------ MESSAGES -------- */
+
+div.user-messages {
+    background-color: white;
+    grid-row: 1/-1;
+}
+
+/* ------ SUMMARY -------- */
+
+div.user-summary {
+    background-color: white;
+    grid-row: 1/-1;
+}
+
+/* ------ EDIT REGISTRATION -------- */
+
+div.user-edit-registration {
+    background-color: white;
+    grid-row: 1/-1;
+}
+

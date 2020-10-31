@@ -1,0 +1,27 @@
+.private-message-container {
+    height: 50%;
+    border-top-left-radius: 2%;
+    border-bottom-left-radius: 2%;
+    overflow-y: scroll;
+    width: 90%;
+    margin: auto;
+    text-align: left;
+    background-color: #f9f9f9;
+}
+
+.single-message {
+    margin: 5px 10px;
+}
+.private-message-container + hr {
+    margin: 0;
+}
+
+
+
+.chat-form {
+    width: 90%;
+    margin: auto;
+    display: flex;
+}
+
+

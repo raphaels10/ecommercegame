@@ -1,0 +1,30 @@
+.navbar-brand img {
+    height: 60px;
+}
+
+
+.nav-logo-text {
+    font-family: 'Russo One';
+    display: inline-block;
+    margin-left: 12px;
+    font-size: 24px;
+    letter-spacing: 1.2px;
+    color: rgb(236, 98, 5)
+
+    
+}
+
+.nav-searchbar {
+    width: 300px !important;
+}
+
+
+.dropdown-item a {
+    color: lightslategray;
+}
+
+.dropdown-item a:hover {
+    text-decoration: none;
+   
+}
+

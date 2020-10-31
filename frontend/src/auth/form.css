@@ -1,0 +1,48 @@
+body {
+    min-height: 95vh;
+    font-family: 'Open Sans';
+    background-color: #eaeaea;
+}
+
+input[type=file] {
+    visibility: hidden;
+}
+
+.form-wrapper {
+    min-height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input.form-control:first-of-type {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom: none;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+
+input.form-control {
+    border-radius: 0px;
+    border-bottom: none;
+}
+
+input.form-control:last-of-type {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom: 1px solid #ced4da;
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+    
+}
+
+::placeholder {
+    font-size: 14px;
+}
+
+.form-wrapper p {
+    font-size: 14px;
+}
+
