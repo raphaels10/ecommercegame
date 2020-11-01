@@ -7,7 +7,7 @@ const ProductSchema = new mongoose.Schema({
     description: {type: String, required: [true, "Campo descrição obrigatório"]},
     stock: {type: Number, required: [true, "Campo estoque obrigatório"], min: [1, "Estoque deve ser maior ou igual a 1"]},
     isMain: {type: Boolean, default: true},
-    userId: {type: String},
+    seller: {type: String, required: true},
     images: [{type: String}]    
 })
 

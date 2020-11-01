@@ -14,9 +14,9 @@ module.exports = (req, res, next) => {
         if(err) return res.status(400).send({error: ['Usuario não validado']})
         if(decoded.csrf_token !== token) return res.status(400).send({error: ['Usuário não validado']})
 
-        new Product({images, name, game, description, price, stock, userId: decoded.user._id}).save()
+        new Product({images, name, game, description, price, stock, seller: decoded.user.username}).save()
         .then(product => {
-           User.findByIdAndUpdate(decoded.user._id, {$push: { productsId: product._id }}, {
+           User.findOneAndUpdate({username: decoded.user.username}, {$push: { productsId: product._id }}, {
                  useFindAndModify: false  
            },
                 (err, document) => {

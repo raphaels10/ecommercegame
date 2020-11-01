@@ -5,6 +5,6 @@ module.exports = (req, res, next) => {
     User.findOne({username}, (err, user) => {
         if (err) return res.status(400).json({error: ["Usuário não encontrado"]})
         if(!user) return res.status(400).json({error: ["Usuário não encontrado"]})
-        return res.json(user.username)
+        return res.json({username: user.username, profilePic: user.profilePic})
     })
 }

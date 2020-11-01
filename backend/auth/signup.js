@@ -17,6 +17,7 @@ module.exports = async (req, res, next) => {
     const email = req.body.email || ''
     const password = req.body.password || ''
     const confirmPassword = req.body.confirmPassword || ''
+    const fileURL = req.body.fileURL || ''
 
     if (!password.match(pass_regex)) return res.status(400).send({error: ["Senha deve ter de 6 a 20 dígitos"]})
     if (!email.match(email_regex)) return res.status(400).send({error: ["E-mail inválido"]})
@@ -32,7 +33,7 @@ module.exports = async (req, res, next) => {
             if (user.email === email) return res.status(400).send({error: ["Email já cadastrado"]})
         }
         else {
-            const newUser = new User({name, username, email, password: hashedPassword})
+            const newUser = new User({name, username, email, password: hashedPassword, profilePic: fileURL})
             newUser.save()
             .then((user) => {
                 const {username} = user
