@@ -22,7 +22,7 @@ function routes(params) {
     <ConnectedRouter history={history}>
         <Switch>
             <Route exact path="/main" component={MainPage}/>
-            <Route path="/signup" component={() => <Signup onSubmit={params.signupFunc}/>}/>
+            <Route path="/signup" component={Signup}/>
             <Route path="/login" component={() => <Login onSubmit={params.loginFunc}/>}/>
             <Route path="/logout" component={Logout}/>
             <Route path="/recoverPass" component={() => <RecoverPass onSubmit={params.recoverPassFunc}/>}/>

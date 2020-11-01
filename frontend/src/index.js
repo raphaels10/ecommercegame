@@ -11,7 +11,7 @@ import { Provider } from 'react-redux'
 import { routerMiddleware} from 'connected-react-router'
 import history from './main/history'
 
-const store = createStore(createRootReducer, applyMiddleware(routerMiddleware(history), multi, thunk))
+export const store = createStore(createRootReducer, applyMiddleware(routerMiddleware(history), multi, thunk))
 
 
 

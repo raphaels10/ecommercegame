@@ -14,9 +14,14 @@ export default params => {
     useEffect(() => {
         axios.get(`${BASE_URL}/products/${id}`)
         .then(r => {
+            console.log("Sucesso")
             setProduct(r.data)
+        })       
+        .catch(e => {
+            console.log("Erro")
+            console.log(e.response.data)
         })
-    }, [])
+        }, [])
 
     if(!product) return <p>Carregando...</p>
 

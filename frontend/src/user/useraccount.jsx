@@ -1,25 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { logout } from '../auth/authActions'
-import {Redirect} from 'react-router-dom'
+import axios from 'axios'
 import './useraccount.css'
 import profilepic from '../assets/images/userplaceholder.webp'
-
 import History from './history'
 import Messages from './messages'
 import Summary from './summary'
 import EditRegistration from './editregistration'
 
 import { FaList, FaCoins, FaEnvelope, FaEdit, FaSignOutAlt } from 'react-icons/fa'
-import { useEffect } from 'react'
+
+const BASE_URL = "http://localhost:3001"
 
 
 
 function UserAccount(params) {
     const validated = params.validated
+    const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
+
+    useEffect(() => {
+        axios.post(`${BASE_URL}/userdata`, {token}, {withCredentials: true})
+        .then(r => {
+            if(r.data.profilePic) setProfilePic(r.data.profilePic)
+        })
+        .catch(e => console.log(e))
+    },[])
+
+
 
     const [content, setContent] = useState("history")
-
+    const [profilePic, setProfilePic] = useState("")
 
 
 
@@ -50,7 +61,7 @@ function UserAccount(params) {
                 <div className="profile-info">
                     <div className="profile-header">
                         <div className="profile-pic">
-                            <img src={profilepic} alt="Foto de perfil" />
+                            <img src={profilePic || profilepic} alt="Foto de perfil" />
                         </div>
                         <div className="user-info">
                             <h2>{params.user || "Usuário"}</h2>

@@ -15,6 +15,7 @@ function OtherUser(params) {
     const [text, setText] = useState("")
     const [userExists, setUserExists] = useState(false)
     const [loading, setLoading] = useState(true)
+    const [userProfilePic, setUserProfilePic] = useState("")
 
     const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
 
@@ -25,6 +26,7 @@ function OtherUser(params) {
         .then(r => {
             setUserExists(true)
             setLoading(true)
+            if(r.data.profilePic) setUserProfilePic(r.data.profilePic)
         })
         .catch(e => {
             setUserExists(false)
@@ -86,7 +88,7 @@ function OtherUser(params) {
                 <div className="profile-info">
                     <div className="profile-header">
                         <div className="profile-pic">
-                            <img src={profilepic} alt="Foto de perfil" />
+                            <img src={ userProfilePic || profilepic} alt="Foto de perfil" />
                         </div>
                         <div className="user-info">
                             <h2>{username}</h2>
