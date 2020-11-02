@@ -9,7 +9,7 @@ function History(params) {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        axios.post("http://localhost:3001/userdata", { token }, {
+        axios.post(`${BASE_URL}/userdata`, { token }, {
             withCredentials: true
         }).then(r => {
             setProductsId(r.data.productsId)

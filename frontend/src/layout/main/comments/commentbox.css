@@ -1,0 +1,56 @@
+
+.comment-box {
+    text-align: left !important;
+    font-family: 'Open Sans'
+}
+
+.comment-box .comment-header.reply {
+    margin-left: 40px;
+}
+
+.comment-box .comment-author {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 5px 0px;
+}
+
+.comment-box .comment-author span.comment-date {
+    font-weight: normal;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.comment-box .comment-text{
+    font-size: 14px;
+    margin: 5px 0px;
+}
+
+.comment-box .comment-text.reply {
+    margin-left: 40px;
+}
+
+.comment-box .comment-text.reply:last-of-type {
+    margin-bottom: 30px;
+}
+
+
+.comment-box .comment-reply-button {
+    margin: 5px 0px 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: rgb(96,96,96)
+}
+
+.reply-form {
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.reply-form .reply-buttons {
+   align-self: flex-end;
+}
+
+.reply-form .reply-buttons button{
+    font-size: 14px;
+}

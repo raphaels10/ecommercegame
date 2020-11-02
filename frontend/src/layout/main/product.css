@@ -4,11 +4,21 @@
     margin-bottom: 30px;
     margin-left: 5px;
 }
+
+.card-mini.card-fixed-size {
+    width: 200px;
+}
+
 .card-img-fixed-size {
     width: 225px;
     height: 175px;
     object-fit: cover;
     
+}
+
+.card-mini .card-img-fixed-size {
+    width: 200px;
+    height: 100px;
 }
 
 .card-fixed-size a{
@@ -17,11 +27,17 @@
 }
 
 .card-title-custom {
-    font-size: 20px;
+    font-size: 16px;
     font-family: 'Open Sans';
     font-weight: 700;
     color: #eaeaea;
 }
+
+.card-mini .card-title-custom {
+    font-size: 14px;
+}
+
+
 .outline-green {
     outline: 1.5px solid rgba(0, 255, 0, .7);
 }

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import profilepic from '../../assets/images/userplaceholder.webp'
+import OtherUserProducts from './otheruserproducts'
 import { FaEnvelope } from 'react-icons/fa'
 import { connect } from 'react-redux'
 import { PacmanLoader } from 'react-spinners'
@@ -109,6 +110,7 @@ function OtherUser(params) {
                         </ul>
                     </div>
                 </div>
+                <OtherUserProducts username={username}/>
             </div>
         </div>
         </>
