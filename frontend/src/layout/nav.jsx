@@ -21,7 +21,7 @@ function NavBar(params) {
 
     return (
         <Navbar dark color="dark" expand="lg">
-            <NavbarBrand>
+            <NavbarBrand href="/main">
                 <img src={logo} alt="logotipo" />
                 <span className="nav-logo-text">WolfStore</span>
             </NavbarBrand>
@@ -45,7 +45,7 @@ function NavBar(params) {
                                 </a>
                             </DropdownItem>
                             <DropdownItem>
-                                <a className="anchor-dropdown" href="/main">Meu carrinho</a>
+                                <a className="anchor-dropdown" href="/cart">Meu carrinho</a>
                             </DropdownItem>
                             <DropdownItem className="mt-0 d-none d-lg-block" divider/>
                             <DropdownItem>

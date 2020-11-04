@@ -13,6 +13,7 @@
     "firebase": "^7.24.0",
     "history": "^4.10.1",
     "react": "^16.13.1",
+    "react-cookie": "^4.0.3",
     "react-dom": "^16.13.1",
     "react-google-recaptcha": "^2.1.0",
     "react-icons": "^3.11.0",

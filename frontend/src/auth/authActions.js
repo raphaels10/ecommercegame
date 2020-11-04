@@ -49,6 +49,8 @@ export function signup(newuser) {
     }
 }
 
+
+
 export function logout() {
     return dispatch => {
         axios.get(`${BASE_URL}/logout`, { withCredentials: true }).then(r => {

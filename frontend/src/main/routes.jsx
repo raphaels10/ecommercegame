@@ -14,7 +14,7 @@ import { signup, login, recoverPass, changePass } from '../auth/authActions'
 import { ConnectedRouter} from 'connected-react-router'
 import history from './history'
 import MainPage from './mainpage'
-
+import Cart from '../user/cart/cart'
 
 
 function routes(params) {
@@ -31,6 +31,7 @@ function routes(params) {
             <Route path="/products/:id" component={GameProduct}/>
             <Route path="/myaccount" component={UserAccount}/>
             <Route path="/users/:username" component={OtherUser}/>
+            <Route path="/cart" component={Cart}/>
             <Redirect from="*" to="/main"/>
         </Switch>
     </ConnectedRouter>

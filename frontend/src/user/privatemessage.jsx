@@ -36,7 +36,7 @@ function PrivateMessage(params) {
 
     return (
         <>
-            <h1>Conversa com {params.destinatary}</h1>
+            <h2>Conversa com {params.destinatary}</h2>
             <div className="private-message-container">
                 {messageList.map(message => (
                     <div className="single-message" key={message._id}>

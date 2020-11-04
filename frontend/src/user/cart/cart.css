@@ -1,0 +1,65 @@
+.cart-container {
+    font-family: 'Open Sans';
+    width: 80%;
+    margin: 30px auto;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    background: white;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    5px 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    -5px -8.5px 10px rgba(0, 0, 0, 0.06),
+    0 11.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 11px 16px rgba(0, 0, 0, 0.086),
+    0 25px 40px rgba(0, 0, 0, 0.12)
+}
+
+
+
+.cart-container .cart-total {
+    margin: 30px 30px 15px 15px;
+    font-size: 24px;
+    font-weight: 600;
+    color: rgb(240, 108, 0);
+    text-align: right;
+}
+
+
+.cart-item-container {
+    position: relative;
+}
+
+.cart-item-container span {
+    width: 100%;
+    text-align: center;
+}
+
+
+
+.cart-product-image {
+    vertical-align: top;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    left: 0px;
+}
+
+.cart-container .cart-button-container {
+    text-align: right;
+}
+
+.cart-container .cart-button-container button {
+    font-size: 14px;
+}
+
+.cart-container .cart-button-container button:first-child {
+    margin-right: 5px;
+}
+.cart-container .cart-button-container button:last-child {
+    margin-right: 30px;
+}
+
+
+

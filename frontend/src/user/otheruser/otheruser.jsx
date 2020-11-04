@@ -45,7 +45,9 @@ function OtherUser(params) {
 
     if(!userExists && !loading) {
         return (
-            <h1> Usuário não encontrado </h1>
+            <div className="d-flex vw-100 vh-100 align-items-center justify-content-center">
+                <h1 style={{color: "rgba(0,0,0,.15)"}}> Usuário não encontrado =( </h1>
+            </div>
         )
     }
 

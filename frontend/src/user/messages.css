@@ -1,5 +1,20 @@
 .user-messages {
+    font-family: 'Open Sans';
     overflow-y: auto;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    5px 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    -5px -8.5px 10px rgba(0, 0, 0, 0.06),
+    0 11.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 11px 16px rgba(0, 0, 0, 0.086),
+    0 25px 40px rgba(0, 0, 0, 0.12)
+}
+
+.user-messages h2 {
+    font-family: 'Open Sans';
+    font-weight: 600;
+    margin-top: 20px;
+    color: rgba(0,0,0,.12);
+    text-transform: uppercase;
 }
 
 .message-container {

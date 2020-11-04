@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import {toastr} from 'react-redux-toastr'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { FaAngleDown, FaPencilAlt, FaShoppingCart, FaMinus, FaPlus } from 'react-icons/fa'
 import './gameproduct.css'
+import {useCookies} from 'react-cookie'
 
 import CommentBox from '../main/comments/commentbox'
 import SubmitComment from '../main/comments/submitcomment'
@@ -11,14 +13,40 @@ const BASE_URL = "http://localhost:3001"
 
 
 export default params => {
+    const [cookies, setCookie] = useCookies(["cart"])
     const { id } = params.match.params
     const [product, setProduct] = useState()
     const [quantityCounter, setQuantityCounter] = useState(1)
     const [imageIndex, setImageIndex] = useState(0)
 
+
     useEffect(() => {
         fetchData()
     }, [])
+
+    function setCart() {
+        const cartProduct = {name: product.name, game: product.game, quantity: quantityCounter, 
+            value: quantityCounter * product.price, id: product._id, image: product.images[0]}
+        if(cookies.cart instanceof Array) {
+            if(cookies.cart.some(p => p.id === product._id)) {
+                toastr.error("Erro", "Esse produto já foi adicionado ao carrinho")
+                return
+            }
+        }
+
+        if (!cookies.cart){
+            setCookie("cart", JSON.stringify([cartProduct]), 
+            {path: "/", expires: new Date(new Date().getTime()+ 24*60*60*1000)})
+            toastr.success("", "Produto adicionado ao carrinho")
+        }
+        else {
+            const cart = [...cookies.cart]
+            cart.push(cartProduct)
+            setCookie("cart", JSON.stringify(cart), 
+            {path: "/", expires: new Date(new Date().getTime()+ 24*60*60*1000)})
+            toastr.success("", "Produto adicionado ao carrinho")
+        }
+    }
 
     function fetchData() {
         axios.get(`${BASE_URL}/products/${id}`)
@@ -100,7 +128,7 @@ export default params => {
                                 </div>
 
                             </div>
-                            <button className="cart-submit " type="button">Adicionar ao carrinho</button>
+                            <button className="cart-submit" onClick={setCart} type="button">Adicionar ao carrinho</button>
                         </div>
                     </div>
                 </div>
