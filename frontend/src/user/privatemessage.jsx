@@ -11,6 +11,7 @@ function PrivateMessage(params) {
     const [messageText, setMessageText] = useState("")
 
     const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
+    parseMessageDate("2020-11-04T04:51:01.094Z")
 
     const { message_id } = params
     useEffect(() => {
@@ -34,14 +35,20 @@ function PrivateMessage(params) {
             .catch(e => console.log("erro"))
     }
 
+    function parseMessageDate(date) {  
+        const UTCDate = new Date(date)
+        return UTCDate.toLocaleString("en-gb")
+    }
+
     return (
         <>
             <h2>Conversa com {params.destinatary}</h2>
             <div className="private-message-container">
                 {messageList.map(message => (
-                    <div className="single-message" key={message._id}>
-                        <strong>{params.username === message.from ? "Você: " : `${message.from}: `}</strong>{message.text}
+                    <div className={`single-message ${params.username === message.from ? "message-from-you": "message-from-other"}`} key={message._id}>
+                        <p>{message.text}<span className="time"> {parseMessageDate(message.createdAt)}</span></p>
                     </div>
+                    
                 ))}
 
             </div>

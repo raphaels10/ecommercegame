@@ -16,7 +16,7 @@ function Cart(params) {
                     <td>
                         <div className="cart-item-container">
                             <img className="cart-product-image d-sm-none d-lg-inline-block" src={p.image}/>
-                            <span>{p.name}</span>
+                            <a href={`/products/${p.id}`}><span>{p.name}</span></a>
                         </div>
                     </td>
                     <td>{p.game}</td>

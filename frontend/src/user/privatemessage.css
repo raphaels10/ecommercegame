@@ -10,8 +10,61 @@
 }
 
 .single-message {
-    margin: 5px 10px;
+    margin: 5px 20px;
 }
+
+.single-message p {
+    white-space: pre-wrap;
+    max-width: 50%;
+    text-align: left;
+    margin: 0px;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 15px;
+    
+}
+
+.single-message p:hover span {
+    display: inline-block;
+}
+
+.single-message.message-from-you {
+    text-align: right;
+}
+
+.single-message.message-from-you p{
+    position: relative;
+    /*background-color: rgb(69, 192, 161);*/
+    background-color: rgb(236, 98, 5);
+    color: white;
+}
+
+.single-message p span{
+    display: none;
+    color: white;
+    background-color: rgba(0,0,0,.8);
+    padding: 5px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.single-message.message-from-you span {
+    left: -175px;
+}
+
+.single-message.message-from-other span {
+    right: -175px;
+}
+
+
+.single-message.message-from-other p {
+    position: relative;
+    background-color: rgb(228,230,235)
+
+}
+
 .private-message-container + hr {
     margin: 0;
 }

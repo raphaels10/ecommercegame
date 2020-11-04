@@ -11,6 +11,8 @@ function Messages(params) {
     const [currentConversation, setCurrentConversation] = useState("")
     console.log(messagesReceived)
 
+   
+
     useEffect(() => {
         axios.post("http://localhost:3001/userdata", { token }, {
             withCredentials: true
@@ -25,7 +27,10 @@ function Messages(params) {
         switch (pageContent) {
             case "overall":
                 return (
-                    messagesReceived.map(messageReceived => (
+                    messagesReceived.sort((a,b) => (
+                        Date.parse(b.messages.slice(-1)[0].createdAt) - Date.parse(a.messages.slice(-1)[0].createdAt)
+                    ))
+                    .map(messageReceived => (
                         <div className="message-container" key={messageReceived._id}
                             onClick={() => {
                                 setCurrentConversation(messageReceived)
@@ -36,7 +41,7 @@ function Messages(params) {
                                     {messageReceived.from === params.username ? messageReceived.to : messageReceived.from}
                                 </strong>
                             </p>
-                            <p>{`${messageReceived.from === params.username ? "Você:" : ""} ${messageReceived.messages.splice(-1)[0].text}`}</p>
+                            <p>{`${messageReceived.messages.slice(-1)[0].from === params.username ? "Você:" : ""} ${messageReceived.messages.slice(-1)[0].text}`}</p>
                             <hr />
                         </div>
                     ))
