@@ -39,7 +39,24 @@ function post(req, res, next) {
 
 function get(req, res, next) {
     const conversationId = req.params.id
-    User.findOne({ "messages._id": conversationId })
+    const {page} = req.query
+
+    if(page) {
+        User.findOne({ "messages._id": conversationId })
+        .then(user => {
+            const user_conversation = user.messages
+            .filter(conversation => conversation._id.toString() === conversationId)[0]
+
+            res.json(user_conversation.messages.reverse().slice((page-1)*10 ,page*10))
+        })
+        .catch(e => res.status(400).json({error: ["Unauthorized"]}))
+        
+    }
+    
+
+    
+    if(!page) {
+        User.findOne({ "messages._id": conversationId })
         .then(user => {
             const user_conversation = user.messages
                 .filter(conversation => conversation._id.toString() === conversationId)[0]
@@ -48,6 +65,7 @@ function get(req, res, next) {
 
         })
         .catch(e => res.status(401).send({ error: ["Unauthorized"] }))
+    }
 }
 
 module.exports = { post, get }
