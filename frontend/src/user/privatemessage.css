@@ -2,7 +2,9 @@
     height: 50%;
     border-top-left-radius: 2%;
     border-bottom-left-radius: 2%;
-    overflow-y: scroll;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
     width: 90%;
     margin: auto;
     text-align: left;
@@ -49,6 +51,7 @@
     top: 50%;
     transform: translateY(-50%);
 }
+
 
 .single-message.message-from-you span {
     left: -175px;
