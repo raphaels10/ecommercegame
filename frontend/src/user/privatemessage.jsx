@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import './privatemessage.css'
@@ -9,6 +9,8 @@ function PrivateMessage(params) {
 
     const [messageList, setMessageList] = useState([])
     const [messageText, setMessageText] = useState("")
+    const [isNewMsg, setIsNewMsg] = useState(false)
+    const lastmessage = useRef(null)
 
     const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
     parseMessageDate("2020-11-04T04:51:01.094Z")
@@ -16,16 +18,32 @@ function PrivateMessage(params) {
     const { message_id } = params
     useEffect(() => {
         const interval_message = setInterval(getMessages, 1500)
-        getMessages()
+        getMessages("init")
         return () => clearInterval(interval_message)
     }, [])
 
-    function getMessages() {
+    useEffect(() => {
+        console.log("Nova mensagem")
+        if (lastmessage.current) lastmessage.current.scrollIntoView()
+    }, [isNewMsg])
+
+    function getMessages(str) {
+        const _str = str || ""
         axios.get(`${BASE_URL}/conversationmessage/${message_id}`)
             .then(r => {
-                setMessageList(r.data.messages)
+
+                setMessageList(m => {
+                    if(r.data.messages.length > m.length) {
+                        setIsNewMsg(b => !b)
+                    }
+                    return r.data.messages
+                })
+
+                if(_str === "init" && lastmessage.current) lastmessage.current.scrollIntoView()
             })
     }
+
+
     function postMessage(e) {
         e.preventDefault()
         setMessageText("")
@@ -44,12 +62,21 @@ function PrivateMessage(params) {
         <>
             <h2>Conversa com {params.destinatary}</h2>
             <div className="private-message-container">
-                {messageList.map(message => (
+                {messageList.map((message, index) => {
+                if (index === messageList.length - 1) {
+                    return (
+                    <div ref={lastmessage}
+                     className={`single-message ${params.username === message.from ? "message-from-you": "message-from-other"}`} key={message._id}>
+                        <p>{message.text}<span className="time"> {parseMessageDate(message.createdAt)}</span></p>
+                    </div>   
+                    )
+                }
+                return (
                     <div className={`single-message ${params.username === message.from ? "message-from-you": "message-from-other"}`} key={message._id}>
                         <p>{message.text}<span className="time"> {parseMessageDate(message.createdAt)}</span></p>
-                    </div>
-                    
-                ))}
+                    </div>                  
+                ) 
+                })}
 
             </div>
             <hr />
