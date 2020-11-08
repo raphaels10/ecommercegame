@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 
+const Product = require('../database/products')
+
 const login = require('../auth/login')
 const signup = require('../auth/signup')
 const validatetoken = require('../auth/validatetoken')
@@ -13,6 +15,7 @@ const userdata = require('../auth/userdata')
 const addproduct = require('../products/addproduct')
 const getproducts = require('../products/getproducts')
 const getproduct = require('../products/getproduct')
+const editproduct = require('../products/editproduct')
 const addcomment = require('../products/comments/addcomment')
 
 const sendmessage = require('../messages/sendmessage')
@@ -37,6 +40,8 @@ app.post('/forgotPass', forgotpass)
 app.post('/changePass', changepass)
 app.get('/confirm/:token', verifyaccount)
 app.post('/products', addproduct)
+app.put('/products', editproduct)
+
 app.get('/products', getproducts)
 app.get('/products/:id', getproduct)
 app.post('/addcomment', addcomment)
@@ -51,3 +56,4 @@ app.post('/finduser', finduser)
 app.listen(3001, () => {
     console.log("Escutando a porta 3001")
 })
+

@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
              .send({error: "Falha ao verificar token"})
         }
         if (decoded.csrf_token !== csrf_token) {        
-            res.status(400)
+            return res.status(400)
             .cookie('CSRF_id', "", { secure: false, httpOnly: true, expires: new Date(new Date().getTime()+ 1) })
             .send({error: "Falha ao verificar token"})
 
