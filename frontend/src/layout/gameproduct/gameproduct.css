@@ -104,6 +104,8 @@
 }
 
 .product-info-container span.product-info {
+    width: 100%;
+    position: relative;
     display: inline-block;
     font-family: 'Open Sans';
     margin-left: 10px;
@@ -112,6 +114,20 @@
     font-size: 20px;
     font-weight: 700;
     color: rgb(240, 108, 0)
+}
+
+.product-info-container span.edit-product {
+    cursor: pointer;
+    transition: color 0.3s;
+    font-size: 14px;
+    color: rgba(0,0,0,.4);
+    position: absolute;
+    right: 25px;
+    top: 5px;
+}
+
+.product-info-container span.edit-product:hover {
+    color: rgba(0,0,0,.7); 
 }
 
 .product-info-container span svg {
@@ -258,4 +274,9 @@ div.comment-form button {
     margin-left: 10px;
 }
 
+.input-edit-product {
+    width: 60px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
 

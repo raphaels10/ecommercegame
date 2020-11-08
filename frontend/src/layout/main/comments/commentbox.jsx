@@ -5,9 +5,10 @@ const BASE_URL = "http://localhost:3001"
 
 function CommentBox (params) {
     const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
-    const { commentList, productId, refreshFunction } = params
+    const { commentList, productId, refreshFunction} = params
     const [replyId, setReplyId] = useState("")
     const [replyText, setReplyText] = useState("")
+    
 
     function parseDate(date) {
         const parsedDate = date.split("T")[0].split("-").reverse().join("/")
@@ -41,7 +42,7 @@ function CommentBox (params) {
 
                 {comment.replies.map(reply => (
                     <>
-                    <div className="comment-header reply">
+                    <div key={reply._id} className="comment-header reply">
                         <p className="comment-author">
                             {reply.author} <span className="comment-date">{parseDate(reply.createdAt)}</span>
                         </p>
