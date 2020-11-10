@@ -16,12 +16,14 @@ const addproduct = require('../products/addproduct')
 const getproducts = require('../products/getproducts')
 const getproduct = require('../products/getproduct')
 const editproduct = require('../products/editproduct')
+const deleteproduct = require('../products/deleteproduct')
 const addcomment = require('../products/comments/addcomment')
 
 const sendmessage = require('../messages/sendmessage')
 const conversationmessage = require('../messages/conversationmessage')
 
 const finduser = require('../user/finduser')
+const changeuserinfo = require('../user/changeuserinfo')
 
 const cors = require('./cors')
 
@@ -42,14 +44,18 @@ app.get('/confirm/:token', verifyaccount)
 app.post('/products', addproduct)
 app.put('/products', editproduct)
 
+
 app.get('/products', getproducts)
 app.get('/products/:id', getproduct)
+app.delete('/products/:id', deleteproduct)
 app.post('/addcomment', addcomment)
 app.post('/userdata', userdata)
 app.post('/sendmessage', sendmessage)
 app.post('/conversationmessage/:id', conversationmessage.post)
 app.get('/conversationmessage/:id', conversationmessage.get)
+
 app.post('/finduser', finduser)
+app.post('/changeuserinfo', changeuserinfo)
 
 
 

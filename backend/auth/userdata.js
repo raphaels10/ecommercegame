@@ -12,11 +12,12 @@ module.exports = (req, res, next) => {
         User.findOne({username: decoded.user.username})
         .then(user => {
             
-            res.json({profilePic: user.profilePic, productsId: user.productsId, messagesReceived: user.messages})
+           return res.json({profilePic: user.profilePic, productsId: user.productsId, messagesReceived: user.messages})
         })
         .catch(error => {
-            res.status(400).json({error: ['Failed retrieving user info']})
+           return res.status(400).json({error: ['Failed retrieving user info']})
         })
 
     })
 }
+

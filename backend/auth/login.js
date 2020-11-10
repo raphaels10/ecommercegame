@@ -23,10 +23,10 @@ module.exports = (req, res, next) => {
                 return res.status(200).cookie('CSRF_id', token, { secure: false, httpOnly: true, expires: new Date(new Date().getTime()+ 3*60*60*1000) })
                 .json({username, name: user.name, token: random})
            }
-           else res.status(400).send({error: "Usuário e; ou senha inválido(s)"})
+           else return res.status(400).send({error: "Usuário e; ou senha inválido(s)"})
        })
     })
     .catch(e => {
-        res.status(400).send({error: "Usuário e;ou senha inválido(s)"})
+        return res.status(400).send({error: "Usuário e;ou senha inválido(s)"})
     })
 }

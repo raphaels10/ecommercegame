@@ -52,7 +52,7 @@ module.exports = async (req, res, next) => {
                     })
                 })
                 
-                res.send("Cadastro realizado com sucesso! Enviamos um e-mail para confirmar sua conta")
+               return res.send("Cadastro realizado com sucesso! Enviamos um e-mail para confirmar sua conta")
             })
             .catch(e => {
                 parseValidationErrors(e, res)

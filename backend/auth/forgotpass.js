@@ -21,8 +21,8 @@ module.exports = (req, res, next) => {
                 <h2>Hello, ${user.username}! </h2>
                 <p>to change your password, please access this <a href="http://localhost:3000/recover/${token}">link</a> </p>
             `
-            }).then(res.send("Um e-mail de recuperação foi enviado. Cheque a caixa de mensagem ou a pasta de spam"))
-            .catch(res.status(400).send({error: "Erro na solicitação com o servidor"}))
+            }).then(r => res.send("Um e-mail de recuperação foi enviado. Cheque a caixa de mensagem ou a pasta de spam"))
+            .catch(e => res.status(400).send({error: "Erro na solicitação com o servidor"}))
         })
     })
 
