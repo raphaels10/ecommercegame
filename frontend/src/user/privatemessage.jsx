@@ -13,7 +13,6 @@ function PrivateMessage(params) {
     const lastmessage = useRef(null)
 
     const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
-    parseMessageDate("2020-11-04T04:51:01.094Z")
 
     const { message_id } = params
     useEffect(() => {

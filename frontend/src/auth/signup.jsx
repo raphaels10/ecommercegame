@@ -52,7 +52,7 @@ function Signup(params) {
             <form className="form-signup" onSubmit={handleSubmit}>
                 <h1 className="h3 mb-3 font-weight-normal">Cadastro</h1>
                 <input name="name" className="form-control" id="name" placeholder="Nome" type="text"
-                    label="Nome" value={name} onChange={e => setName(e.target.value)}/>
+                    label="Nome" value={name} onChange={e => setName(e.target.value)} autoFocus/>
                 <input name="username" className="form-control" id="username" placeholder="Usuário" type="text"
                     label="Usuário" value={username} onChange={e => setUsername(e.target.value)} />
                 <input name="email" id="email" className="form-control" placeholder="E-mail" type="email"

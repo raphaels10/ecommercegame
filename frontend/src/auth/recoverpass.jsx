@@ -8,7 +8,7 @@ function Recoverpass(params) {
             <div className="form-wrapper">
                 <form className="form-signin" onSubmit={params.handleSubmit}>
                     <Field name="email" id="email" placeholder="Digite seu e-mail" type="email"
-                    component={Input}/>
+                    component={Input} autoFocus/>
                     <button className="btn btn-lg btn-primary btn-block" type="submit">Enviar</button>
                 </form>
             </div>
