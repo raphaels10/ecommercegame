@@ -7,6 +7,7 @@ import RecoverPass from '../auth/recoverpass'
 import ChangeRecoverPass from '../auth/changerecoverpass'
 import CreatePost from '../creation/createpost'
 import GameProduct from '../layout/gameproduct/gameproduct'
+import SearchedProducts from '../layout/main/searchedproducts'
 import UserAccount from '../user/useraccount'
 import OtherUser from '../user/otheruser/otheruser'
 import { connect } from 'react-redux'
@@ -32,6 +33,7 @@ function routes(params) {
             <Route path="/myaccount" component={UserAccount}/>
             <Route path="/users/:username" component={OtherUser}/>
             <Route path="/cart" component={Cart}/>
+            <Route path="/search/:productname" component={SearchedProducts}/>
             <Redirect from="*" to="/main"/>
         </Switch>
     </ConnectedRouter>

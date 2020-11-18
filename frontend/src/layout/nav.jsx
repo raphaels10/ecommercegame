@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import './nav.css'
 import logo from '../assets/images/wolf-logo.png'
 import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
+import { store } from '../index'
 import { validateToken } from '../auth/authActions' 
 import {
     Nav, NavItem, NavbarToggler, Navbar, UncontrolledDropdown, DropdownMenu, DropdownItem,
@@ -11,6 +13,7 @@ import If from '../operators/if'
 
 function NavBar(params) {
     const [isOpen, setIsOpen] = useState(false)
+    const [searchedProduct, setSearchedProduct] = useState("")
     const {token} = JSON.parse(localStorage.getItem("user-session")) || ''
     useEffect(() => {
         params.verifyToken(token)
@@ -18,6 +21,11 @@ function NavBar(params) {
       } , [])
 
     const toggle = () => setIsOpen(!isOpen)
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        store.dispatch(push(`/search/${searchedProduct}`))
+    }
 
     return (
         <Navbar dark color="dark" expand="lg">
@@ -63,8 +71,9 @@ function NavBar(params) {
                         <NavLink href="/">Jogos</NavLink>
                     </NavItem>
                     <NavItem className="d-none d-lg-block">
-                        <form class="form-inline">
-                            <input className="nav-searchbar form-control mr-sm-2" type="search" placeholder="Busque um produto" aria-label="Search"/>
+                        <form class="form-inline" onSubmit={handleSubmit}>
+                            <input value={searchedProduct} onChange={e => setSearchedProduct(e.target.value)}
+                            className="nav-searchbar form-control mr-sm-2" type="search" placeholder="Busque um produto" aria-label="Search"/>
                             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                         </form>
                     </NavItem>
