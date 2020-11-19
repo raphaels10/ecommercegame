@@ -8,10 +8,12 @@ To have access to the project, you must have Node.js and MongoDB installed in yo
 
 **Example of .env file:**
 
-```module.exports = {
+```
+module.exports = {
     secret: "*#DIJ@Id29_swK6HuTNy#Pkz%_a",
     smtpPass: "my_email_pass"
-} ```
+} 
+``` 
 
 
 Finally, you'll have to install the dependencies in both the frontend and backend folder, by simply typing a "npm install" or a "yarn add" in the terminal.
