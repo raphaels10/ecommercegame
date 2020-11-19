@@ -1,14 +1,26 @@
 ## WolfStore
 
-A game-oriented e-commerce website project i'm currently working on, which will function as a marketplace, where users can register their products for sale and other users can buy it. 
+A game-oriented e-commerce website project which will function as a marketplace, where users can register their products for sale and other users can buy it. 
 
-To have access to the project, you must have Node.js and MongoDB installed in your machine. You will have to manually set the .env file in the backend folder. It must contain a secret key for the json webtokens and the password of your SMTP transport. You'll also have to set up your own SMTP transport in "backend/config/smtp.js" and change it accordingly in the files "backend/auth/forgotpass.js" and "backend/auth/signup.js". You can simply create a GMail/Hotmail account and use it as your transport if you wish to! 
+### Initial setup 
+
+To have access to the project, you must have Node.js and MongoDB installed in your machine. You will have to manually set the .env file in the backend folder. It must contain a secret key for the json webtokens and the password of your SMTP transport. You'll also have to set up your own SMTP transport in "backend/config/smtp.js" and change it accordingly in the files "backend/auth/forgotpass.js" and "backend/auth/signup.js". You can simply create a GMail/Hotmail account and use it as your transport if you wish to!
+
+**Example of .env file:**
+
+```module.exports = {
+    secret: "*#DIJ@Id29_swK6HuTNy#Pkz%_a",
+    smtpPass: "my_email_pass"
+} ```
+
 
 Finally, you'll have to install the dependencies in both the frontend and backend folder, by simply typing a "npm install" or a "yarn add" in the terminal.
 
+To start the server, make sure mongoDB is running in your machine by simply typing "mongod" in the terminal, then navigate to the backend folder in your command prompt and do a **npm run dev**. To start the frontend application, navigate to the frontend folder in your command prompt and do a **npm start**. Make sure the ports **3000** and **3001** aren't in use in your local machine, since the applicaton will be running on them. 
+
 It's important to note that the site is still in development stage, so there are some missing features.
 
-## Current ongoing features 
+### Current ongoing features 
 
 ### `Authentication and validation`
 
