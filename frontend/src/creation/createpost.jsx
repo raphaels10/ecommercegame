@@ -3,11 +3,27 @@ import { BounceLoader } from 'react-spinners'
 import { toastr } from 'react-redux-toastr'
 import { push } from 'connected-react-router'
 import { connect } from 'react-redux'
+
 import './createpost.css'
+import './theme.css'
+
+import AutoSuggest from 'react-autosuggest'
 import {storage} from '../firebase'
 import axios from 'axios'
 import {FiPlus, FiX} from 'react-icons/fi'
 const BASE_URL = "http://localhost:3001"
+
+const gameList = [
+    {name: "League of Legends"},
+    {name: "Albion Online"},
+    {name: "Fall Guys"},
+    {name: "Runescape"},
+    {name: "World of Warcraft"},
+    {name: "Tibia"},
+    {name: "Fortnite"},
+    {name: "The Elder Scrolls Online"},
+    {name: "Counter-Strike: Global Offensive"}
+]
 
 
 function CreatePost (params) {
@@ -19,6 +35,8 @@ function CreatePost (params) {
     const [price, setPrice] = useState(0)
     const [files, setFiles] = useState([])
     const [filesURL, setFilesURL] = useState([])
+
+    const [suggestions, setSuggestions] = useState([])
 
     async function onSubmit(e) {
         setLoading(true)
@@ -96,7 +114,33 @@ function CreatePost (params) {
         })
         
     }
+
+    const getSuggestions = value => {
+        const inputValue = value.trim().toLowerCase()
+        const inputLength = inputValue.length
+
+        console.log(inputValue)
+
+        return inputLength === 0 ? [] : gameList.filter(game => (
+            game.name.toLowerCase().includes(inputValue)
+        ))
+    }
+
+    const onSuggestionsFetchRequested = ({value}) => {
+        setSuggestions(getSuggestions(value))
+    }
     
+    const getSuggestionValue = suggestion => suggestion.name
+
+    const renderSuggestion = suggestion => (
+        <div>
+            {suggestion.name}
+        </div>
+    )
+
+    const onSuggestionsClearRequested = () => {
+        setSuggestions([])
+    }
 
     return (
         <div className={loading ? "transparent" : ""}>
@@ -107,8 +151,29 @@ function CreatePost (params) {
                 <form className="form-signin" onSubmit={onSubmit}>
                     <div className="container">
                      <div className="row">
-                        <input disabled={loading} name="game" id="game" placeholder="Nome do jogo" type="text"
-                        required autoFocus className="col-md-6 form-control" value={game} onChange={e => setGame(e.target.value)} />
+                        <div className="col-md-6" style={{padding: "0px"}}>
+                            <AutoSuggest inputProps={{
+                                placeholder: "Informe o jogo",
+                                autoComplete: "off",
+                                className: "form-control",
+                                name: "game",
+                                id: "game",
+                                value: game,
+                                onChange: (_event, { newValue }) => {
+                                    setGame(newValue)
+                                }
+                            }} suggestions={suggestions}
+                            onSuggestionsFetchRequested={onSuggestionsFetchRequested} 
+                            onSuggestionsClearRequested={onSuggestionsClearRequested}
+                            getSuggestionValue={getSuggestionValue}
+                            renderSuggestion={renderSuggestion}
+                            onSuggestionSelected={(e, {suggestion, method}) => {
+                                if (method === "enter") {
+                                    e.preventDefault()
+                                }
+                            }}
+                            />
+                        </div>
                         <input disabled={loading} name="name" id="name" placeholder="Nome do produto" type="text"
                         required className="col-md-6 form-control" value={name} onChange={e => setName(e.target.value)} />
                         <textarea disabled={loading} name="description" id="description" placeholder="Descrição do produto"

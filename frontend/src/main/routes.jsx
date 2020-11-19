@@ -6,6 +6,7 @@ import Logout from '../auth/logout'
 import RecoverPass from '../auth/recoverpass'
 import ChangeRecoverPass from '../auth/changerecoverpass'
 import CreatePost from '../creation/createpost'
+import Games from '../layout/main/games/games'
 import GameProduct from '../layout/gameproduct/gameproduct'
 import SearchedProducts from '../layout/main/searchedproducts'
 import UserAccount from '../user/useraccount'
@@ -34,6 +35,7 @@ function routes(params) {
             <Route path="/users/:username" component={OtherUser}/>
             <Route path="/cart" component={Cart}/>
             <Route path="/search/:productname" component={SearchedProducts}/>
+            <Route path ="/games/:gamename" component={Games}/>
             <Redirect from="*" to="/main"/>
         </Switch>
     </ConnectedRouter>
