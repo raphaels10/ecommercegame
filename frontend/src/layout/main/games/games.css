@@ -1,0 +1,23 @@
+.game-header {
+    position: relative;
+}
+
+.game-header h2 {
+    font-family: 'Russo One';
+    letter-spacing: 3px;
+    margin: 0px;
+    position: absolute;
+    bottom: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, .7)
+
+}
+
+.game-header img {
+    width: 100vw;
+    height: 50vh;
+    object-fit: cover;
+}

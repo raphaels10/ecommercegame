@@ -2,14 +2,18 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { PacmanLoader } from 'react-spinners'
 import { FaFrown } from 'react-icons/fa'
+import getImage from '../../../common/functions/getgameimage'
 
 import Product from '../product'
+
+import './games.css'
 
 const BASE_URL = "http://localhost:3001"
 
 function Games(params) {
     const { gamename } = params.match.params
     const parsedGameName = gamename.split("-").length > 1 ? gamename.split("-").join(" ") : gamename
+    const gameImage = getImage(parsedGameName) 
 
     const [productList, setProductList] = useState([])
     const [loading, setLoading] = useState(true)
@@ -46,7 +50,16 @@ function Games(params) {
         if (!loading && productList.length > 0) {
             return (
                 <>
-                    <h1>Games!</h1>
+                    <div className="game-header">
+                        {gameImage ? 
+                         <>
+                         <img src={gameImage} alt={parsedGameName}/>
+                         <h2>Produtos para o jogo {parsedGameName}</h2>
+                         </>
+                        :
+                        <p>Produtos para o jogo {parsedGameName}!</p>
+                        }
+                    </div>
                     <div className="main-products-container">
                         {productList.map(product => (
                             <Product key={product._id} image={product.images[0]} alt={product.game} label="Comprar"
