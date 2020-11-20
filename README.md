@@ -58,5 +58,9 @@ Users can add products to the cart as well as remove them. You can't add product
 
 You can edit your own products by simply navigating to their page. You can change every information from the product, except for the pictures. To delete a product, simply go to your profile and remove it by clicking on the trash can icon.
 
+### `Contact support`
+
+Users can contact the support from the navigation bar. After an user fills out the contact form, an email containing the reason of the contact as well as the sender's email and contact text will be sent to the website's Gmail account
+
 
 
