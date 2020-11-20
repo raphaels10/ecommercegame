@@ -8,6 +8,9 @@ import History from './history'
 import Messages from './messages'
 import Summary from './summary'
 import EditRegistration from './editregistration'
+import {store} from '../index'
+import {push} from 'connected-react-router'
+import {PacmanLoader} from 'react-spinners'
 
 import { FaList, FaCoins, FaEnvelope, FaEdit, FaSignOutAlt } from 'react-icons/fa'
 
@@ -19,18 +22,26 @@ function UserAccount(params) {
     const validated = params.validated
     const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
 
+    const [content, setContent] = useState("history")
+    const [profilePic, setProfilePic] = useState("")
+    const [loading, setLoading] = useState(true)
+
+
     useEffect(() => {
         axios.post(`${BASE_URL}/userdata`, {token}, {withCredentials: true})
         .then(r => {
             if(r.data.profilePic) setProfilePic(r.data.profilePic)
+            setLoading(false)
         })
-        .catch(e => console.log(e))
+        .catch(e => {
+            console.log(e)
+            setLoading(false)
+            store.dispatch(push('/login'))
+        })
     },[])
 
 
 
-    const [content, setContent] = useState("history")
-    const [profilePic, setProfilePic] = useState("")
 
 
 
@@ -49,6 +60,14 @@ function UserAccount(params) {
                 return <History />
         }
 
+    }
+
+    if(loading) {
+        return (
+            <div className="spinner-container">
+                    <PacmanLoader color="yellow" size={36}/>
+            </div>
+        )
     }
 
    

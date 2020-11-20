@@ -37,7 +37,7 @@ function Footer(params) {
 
                     <div className="col-md-3 mb-md-0 mb-3 d-md-flex align-items-center">
                         <div className="mb-md-3">
-                            <FiMessageCircle size={36}/> <a className="footer-ticket" href="/">Abrir ticket</a>
+                            <FiMessageCircle size={36}/> <a className="footer-ticket" href="/contact-us">Abrir ticket</a>
                         </div>
                     </div>
 

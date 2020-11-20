@@ -25,6 +25,8 @@ const conversationmessage = require('../messages/conversationmessage')
 const finduser = require('../user/finduser')
 const changeuserinfo = require('../user/changeuserinfo')
 
+const emailticket = require('../other/emailticket')
+
 const cors = require('./cors')
 
 const cookieParser = require('cookie-parser')
@@ -53,6 +55,8 @@ app.post('/userdata', userdata)
 app.post('/sendmessage', sendmessage)
 app.post('/conversationmessage/:id', conversationmessage.post)
 app.get('/conversationmessage/:id', conversationmessage.get)
+
+app.post('/contactus', emailticket)
 
 app.post('/finduser', finduser)
 app.post('/changeuserinfo', changeuserinfo)

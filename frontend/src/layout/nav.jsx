@@ -126,7 +126,7 @@ function NavBar(params) {
                         <NavLink href="/create">Anunciar produto</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/partner">Seja um parceiro</NavLink>
+                        <NavLink href="/contact-us">Entrar em contato</NavLink>
                     </NavItem>
                 </Nav>
             </Collapse>

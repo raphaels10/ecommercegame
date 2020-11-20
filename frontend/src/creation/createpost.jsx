@@ -216,7 +216,7 @@ function CreatePost (params) {
                      </div>
 
                     
-                    <button disabled={loading} className="btn btn-lg btn-primary btn-block" type="submit">Posta po pai</button>
+                    <button disabled={loading} className="btn btn-lg btn-primary btn-block" type="submit">Anunciar</button>
                 </form>
             </div>
         </div>

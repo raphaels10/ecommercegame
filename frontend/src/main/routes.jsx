@@ -9,6 +9,7 @@ import CreatePost from '../creation/createpost'
 import Games from '../layout/main/games/games'
 import GameProduct from '../layout/gameproduct/gameproduct'
 import SearchedProducts from '../layout/main/searchedproducts'
+import Contact from '../layout/contact/contact'
 import UserAccount from '../user/useraccount'
 import OtherUser from '../user/otheruser/otheruser'
 import { connect } from 'react-redux'
@@ -30,6 +31,7 @@ function routes(params) {
             <Route path="/recoverPass" component={() => <RecoverPass onSubmit={params.recoverPassFunc}/>}/>
             <Route path="/recover/:token" component={ChangeRecoverPass}/>
             <Route path="/create" component={CreatePost}/>
+            <Route path="/contact-us" component={Contact}/>
             <Route path="/products/:id" component={GameProduct}/>
             <Route path="/myaccount" component={UserAccount}/>
             <Route path="/users/:username" component={OtherUser}/>
