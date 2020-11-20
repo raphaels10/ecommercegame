@@ -1,0 +1,27 @@
+.footer-custom, .footer-custom * {
+    font-family: 'Roboto';
+    color: rgba(255,255,255,.7);
+    font-size: 14px;
+}
+
+.footer-custom {
+    background-color: #343a40;
+
+}
+
+.copyright-custom {
+    background-color: rgba(0,0,0, .2);
+}
+
+.footer-ticket {
+    font-size: 16px;
+}
+
+.footer-custom a{
+    text-decoration: none;
+    transition: all .2s;
+}
+
+.footer-custom a:hover {
+    color: rgba(255,255,255,.9);
+}
