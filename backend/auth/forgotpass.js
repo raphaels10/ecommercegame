@@ -1,5 +1,6 @@
 const User = require('../database/user')
-const transporter = require('../config/smtp')
+const transporter = require('../config/smtp').transport
+const myEmail = require('../config/smtp.js').myEmail
 const env = require('../.env')
 const jwt = require('jsonwebtoken')
 
@@ -15,7 +16,7 @@ module.exports = (req, res, next) => {
             if (err) return res.status(400).send({ error: "Erro na solicitação com o servidor" })
             transporter.sendMail({
                 subject: "Password Change",
-                from: "App Provider <ahostprovider1207@gmail.com>",
+                from: `App Provider <${myEmail}>`,
                 to: user.email,
                 html: `
                 <h2>Hello, ${user.username}! </h2>

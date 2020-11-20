@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const User = require('../database/user')
-const transporter = require('../config/smtp')
+const transporter = require('../config/smtp').transport
+const myEmail = require('../config/smtp.js').myEmail
 const jwt = require('jsonwebtoken')
 const env = require('../.env')
 const parseValidationErrors = require('../errorhandlers/validation')
@@ -43,7 +44,7 @@ module.exports = async (req, res, next) => {
                     if(err) return res.status(400).send({error: ["Erro na solicitação com o servidor"]})
                     transporter.sendMail({
                         subject: "Account confirmation",
-                        from: "App Provider <ahostprovider1207@gmail.com>",
+                        from: `App Provider <${myEmail}>`,
                         to: user.email, 
                         html: `
                             Thank you for your registration! To confirm your email address, please access 
