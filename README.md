@@ -4,7 +4,7 @@ A game-oriented e-commerce website project which will function as a marketplace,
 
 ### Initial setup 
 
-To have access to the project, you must have Node.js and MongoDB installed in your machine. You will have to manually set the .env file in the backend folder. It must contain a secret key for the json webtokens and the password of your SMTP transport. You'll also have to set up your own SMTP transport in "backend/config/smtp.js" and change it accordingly in the files "backend/auth/forgotpass.js" and "backend/auth/signup.js". You can simply create a GMail/Hotmail account and use it as your transport if you wish to!
+To have access to the project, you must have Node.js and MongoDB installed in your machine. You will have to manually set the .env file in the backend folder. It must contain a secret key for the json webtokens and the password of your SMTP transport. You'll also have to set up your own SMTP transport in "backend/config/smtp.js". You can simply create a GMail/Hotmail account and use it as your transport if you wish to!
 
 **Example of .env file:**
 
