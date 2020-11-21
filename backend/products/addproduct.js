@@ -5,14 +5,10 @@ const jwt = require('jsonwebtoken')
 const env = require('../.env')
 
 module.exports = (req, res, next) => {
-    const {images, name, game, description, token} = req.body
+    const {images, name, game, description} = req.body
     const price = parseFloat(req.body.price)
     const stock = parseFloat(req.body.stock)
-    const cookie_payload = req.cookies['CSRF_id'] || ''
-
-    jwt.verify(cookie_payload, env.secret, (err, decoded) => {
-        if(err) return res.status(400).send({error: ['Usuario não validado']})
-        if(decoded.csrf_token !== token) return res.status(400).send({error: ['Usuário não validado']})
+    const {decoded} = res.locals
 
         new Product({images, name, game, description, price, stock, seller: decoded.user.username}).save()
         .then(product => {
@@ -27,6 +23,6 @@ module.exports = (req, res, next) => {
         .catch(e => {
             parseErrors(e, res)
         })
-    })
+    
 
 }

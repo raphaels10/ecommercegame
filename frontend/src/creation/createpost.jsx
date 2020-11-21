@@ -55,7 +55,7 @@ function CreatePost (params) {
         }
         const token = JSON.parse(localStorage.getItem("user-session")).token || ''
         axios.post(`${BASE_URL}/products`,
-         JSON.stringify({token, name, game, description, stock, price, images: arrayFromFilesURL}), {
+         JSON.stringify({csrf_token: token, name, game, description, stock, price, images: arrayFromFilesURL}), {
             headers: {
                 "Content-Type": "application/json"
             },

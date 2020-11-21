@@ -12,6 +12,8 @@ const changepass = require('../auth/changepass')
 const logout = require('../auth/logout')
 const userdata = require('../auth/userdata')
 
+const validation_middleware = require('../auth/validationmiddleware')
+
 const addproduct = require('../products/addproduct')
 const getproducts = require('../products/getproducts')
 const getproduct = require('../products/getproduct')
@@ -43,8 +45,9 @@ app.post('/validateToken', validatetoken)
 app.post('/forgotPass', forgotpass)
 app.post('/changePass', changepass)
 app.get('/confirm/:token', verifyaccount)
-app.post('/products', addproduct)
-app.put('/products', editproduct)
+app.post('/products', validation_middleware, addproduct)
+
+app.put('/products', validation_middleware, editproduct)
 
 
 app.get('/products', getproducts)
@@ -52,14 +55,17 @@ app.get('/products/:id', getproduct)
 app.delete('/products/:id', deleteproduct)
 app.post('/addcomment', addcomment)
 app.post('/userdata', userdata)
-app.post('/sendmessage', sendmessage)
-app.post('/conversationmessage/:id', conversationmessage.post)
+
+app.post('/sendmessage', validation_middleware, sendmessage)
+
+app.post('/conversationmessage/:id', validation_middleware, conversationmessage.post)
+
 app.get('/conversationmessage/:id', conversationmessage.get)
 
 app.post('/contactus', emailticket)
 
 app.post('/finduser', finduser)
-app.post('/changeuserinfo', changeuserinfo)
+app.post('/changeuserinfo', validation_middleware, changeuserinfo)
 
 
 

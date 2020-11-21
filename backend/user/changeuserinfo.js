@@ -1,20 +1,14 @@
-const jwt = require('jsonwebtoken')
-const env = require('../.env')
 const bcrypt = require('bcrypt')
 const User = require('../database/user')
 
 
 module.exports = (req, res, next) => {
     const {actualPassword, newPassword, confirmNewPassword} = req.body
-    console.log(Boolean(actualPassword && newPassword && confirmNewPassword))
-    const token = req.body.token || ''
     const name = req.body.name || ''
     const profilePic = req.body.fileUrl || ''
-    const cookie_payload = req.cookies['CSRF_id'] || ''
+    const {decoded} = res.locals
 
-    jwt.verify(cookie_payload, env.secret, (err, decoded) => {
-        if (err) return res.status(400).json({ error: ['Usuario não validado 1'] })
-        if (decoded.csrf_token !== token) return res.status(400).json({ error: ['Usuário não validado 2'] })
+
         if(profilePic) {
             User.findOneAndUpdate({username: decoded.user.username}, 
                 {$set: {name, profilePic}}, (err, user) => {
@@ -22,7 +16,7 @@ module.exports = (req, res, next) => {
                     if (!user) return res.status(400).json({error: ['Usuário não encontrado']})
 
                     if(Boolean(actualPassword && newPassword && confirmNewPassword)) {
-                        console.log("Passou pelo if")
+
                         const passwordsMatch = newPassword === confirmNewPassword
 
                         bcrypt.compare(actualPassword, user.password, (err, same) => {
@@ -38,7 +32,7 @@ module.exports = (req, res, next) => {
                                 })
                             }
                             else {
-                                return res.status(400).json({error: "Senhas não conferem"})
+                                return res.status(400).json({error: ["Senhas não conferem"]})
                             }
                         })
                     }
@@ -87,8 +81,7 @@ module.exports = (req, res, next) => {
                 })
         }
 
-    }
-    )
+    
 
 
 }

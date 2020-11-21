@@ -23,12 +23,15 @@ function PrivateMessage(params) {
 
     useEffect(() => {
         console.log("Nova mensagem")
-        if (lastmessage.current) lastmessage.current.scrollIntoView()
+        if (lastmessage.current) lastmessage.current.scrollTop = lastmessage.current.scrollHeight
     }, [isNewMsg])
 
     function getMessages(str) {
         const _str = str || ""
-        axios.get(`${BASE_URL}/conversationmessage/${message_id}`)
+        axios.get(`${BASE_URL}/conversationmessage/${message_id}`, {
+            withCredentials: true,
+            headers: {authorization: `BEARER ${token}`},
+        })
             .then(r => {
 
                 setMessageList(m => {
@@ -38,7 +41,7 @@ function PrivateMessage(params) {
                     return r.data.messages
                 })
 
-                if(_str === "init" && lastmessage.current) lastmessage.current.scrollIntoView()
+                if(_str === "init" && lastmessage.current) lastmessage.current.scrollTop = lastmessage.current.scrollHeight
             })
     }
 
@@ -60,11 +63,11 @@ function PrivateMessage(params) {
     return (
         <>
             <h2>Conversa com {params.destinatary}</h2>
-            <div className="private-message-container">
+            <div className="private-message-container" ref={lastmessage}>
                 {messageList.map((message, index) => {
                 if (index === messageList.length - 1) {
                     return (
-                    <div ref={lastmessage}
+                    <div
                      className={`single-message ${params.username === message.from ? "message-from-you": "message-from-other"}`} key={message._id}>
                         <p>{message.text}<span className="time"> {parseMessageDate(message.createdAt)}</span></p>
                     </div>   

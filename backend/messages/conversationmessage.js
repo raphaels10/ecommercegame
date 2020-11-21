@@ -3,16 +3,10 @@ const jwt = require('jsonwebtoken')
 const env = require('../.env')
 
 function post(req, res, next) {
-    const { csrf_token, message } = req.body
+    const { message } = req.body
     const conversationId = req.params.id
-    const token = req.cookies['CSRF_id'] || ''
+    const {decoded} = res.locals
 
-    jwt.verify(token, env.secret, (err, decoded) => {
-
-        if (err) return res.status(400).json({ error: ["Forbidden"] })
-
-        if (decoded.csrf_token !== csrf_token)  res.status(401).json({error: ["Forbidden"]})    
-            
         User.find({ "messages._id": conversationId }).then(users => {
 
             if (!users.some(user => user.username === decoded.user.username)) {
@@ -31,7 +25,7 @@ function post(req, res, next) {
             res.status(405).json({error: ["Forbidden"]})
             console.log(e)
         })
-    })
+    
 
 
 
@@ -39,15 +33,26 @@ function post(req, res, next) {
 
 function get(req, res, next) {
     const conversationId = req.params.id
-    User.findOne({ "messages._id": conversationId })
+    
+    const token = parseFloat(req.headers.authorization.split(" ")[1]) || ''
+    const cookie_payload = req.cookies['CSRF_id'] || ''
+
+    jwt.verify(cookie_payload, env.secret, (err, decoded) => {
+        if(err) return res.status(401).send({error: ['Não Autorizado']})
+        if(decoded.csrf_token !== token) return res.status(401).send({error: ['Não autorizado']})
+
+        User.findOne({ "messages._id": conversationId, username: decoded.user.username })
         .then(user => {
             const user_conversation = user.messages
                 .filter(conversation => conversation._id.toString() === conversationId)[0]
 
-            res.json(user_conversation)
+            return res.json(user_conversation)
 
         })
         .catch(e => res.status(401).send({ error: ["Unauthorized"] }))
+
+    })
+
 }
 
 module.exports = { post, get }

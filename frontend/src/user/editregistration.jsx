@@ -31,7 +31,7 @@ function EditRegistration(params) {
 
         e.preventDefault()
         if (profilePic.length === 0) {
-            axios.post(`${BASE_URL}/changeuserinfo`, { name, token, actualPassword: actualPass, 
+            axios.post(`${BASE_URL}/changeuserinfo`, { name, csrf_token: token, actualPassword: actualPass, 
             newPassword: newPass, confirmNewPassword: confirmNewPass}, 
             { withCredentials: true })
                 .then(r => toastr.success("Sucesso", r.data))
@@ -47,7 +47,7 @@ function EditRegistration(params) {
                 () => {
                     storage.ref(`/profilepics/${profilePic[0].name}`).getDownloadURL()
                         .then(fileUrl => {
-                            axios.post(`${BASE_URL}/changeuserinfo`, { name, fileUrl, token,
+                            axios.post(`${BASE_URL}/changeuserinfo`, { name, fileUrl, csrf_token: token,
                                  actualPassword: actualPass, 
                                 newPassword: newPass, confirmNewPassword: confirmNewPass },
                              { withCredentials: true })

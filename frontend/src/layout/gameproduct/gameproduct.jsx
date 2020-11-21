@@ -29,12 +29,12 @@ function GameProduct(params) {
     const [quantity, setQuantity] = useState(0)
     const [price, setPrice] = useState(0)
 
-    console.log(params.user)
 
 
     useEffect(() => {
         fetchData()
     }, [])
+
 
     function setCart() {
         const cartProduct = {
@@ -74,6 +74,8 @@ function GameProduct(params) {
                 setDescription(r.data.description)
                 setQuantity(r.data.stock)
                 setPrice(r.data.price)
+                console.log(r.data.price)
+                console.log(typeof r.data.price)
             })
             .catch(e => {
                 console.log("Erro")
@@ -84,8 +86,10 @@ function GameProduct(params) {
     function updateProduct(event, trigger) {
         event.preventDefault()
         const productId = product._id
-        console.log(token)
-        axios.put(`${BASE_URL}/products`, { token, price, quantity, description, productId}, 
+        console.log(price)
+        console.log(typeof price)
+
+        axios.put(`${BASE_URL}/products`, { csrf_token: token, price, quantity, description, productId}, 
         {withCredentials: true})
         .then(r => {
             console.log(r.data)
@@ -181,7 +185,7 @@ function GameProduct(params) {
                                 </div>
                                 <div className="quantity-regulator">
                                     <span> Valor: </span>
-                                    {isEditingQnt ? <input className="input-edit-product" type="number" onChange={e => setPrice(e.target.value)}
+                                    {isEditingQnt ? <input className="input-edit-product" type="number" onChange={e => setPrice(parseFloat(e.target.value))}
                                      value={price.toFixed(2)}/>
                                      :
                                         <p className="total-price">R$
