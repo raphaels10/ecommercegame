@@ -1,3 +1,11 @@
+h3.messages-subtitle {
+    font-family: 'Russo one';
+    color: rgb(221,221,221);
+    margin: 0;
+    font-size:20px;
+
+}
+
 .private-message-container {
     height: 50%;
     border-top-left-radius: 2%;

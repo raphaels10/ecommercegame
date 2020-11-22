@@ -62,7 +62,7 @@ function PrivateMessage(params) {
 
     return (
         <>
-            <h2>Conversa com {params.destinatary}</h2>
+            <h3 className="messages-subtitle">conversa com {params.destinatary}</h3>
             <div className="private-message-container" ref={lastmessage}>
                 {messageList.map((message, index) => {
                 if (index === messageList.length - 1) {

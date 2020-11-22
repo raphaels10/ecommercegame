@@ -12,16 +12,16 @@ function Footer(params) {
                 <div className="row">
 
                     <div className="col-md-6 mt-3 mt-md-0">
-                        <h3 className="text-uppercase">Wolfstore</h3>
-                        <p>A Wolfstore é um site de comércio eletrônico de produtos para jogos.
-                            Aqui você pode anunciar seu próprio produto e comprar de outros usuários!
+                        <h3 className="text-uppercase">Sobre nós</h3>
+                        <p style={{color: "rgba(255,255,255,.5)"}}>A WolfStore é um site de comércio eletrônico de produtos para jogos.
                         </p>
                     </div>
 
                     <hr className="clearfix w-100 d-md-none pb-3"/>
 
                     <div className="col-md-3 mb-md-0 mb-3">
-                        <h3 className="text-uppercase">Minha conta</h3>
+
+                        <h3 className="text-uppercase">Menu</h3>
                         <ul className="list-unstyled">
                             <li>
                                 <a href="/myaccount">Minha conta</a>
