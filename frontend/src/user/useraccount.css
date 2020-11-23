@@ -57,6 +57,11 @@ div.profile-header {
     margin-top: 25px;
 }
 
+div.profile-menu {
+    max-height: 350px;
+    transition: max-height 0.6s;
+}
+
 
 div.profile-pic {
     height: 170px;
@@ -152,6 +157,47 @@ div.profile-info .user-menu-item:hover {
     color: #697783;
 }
 
+@media screen and (max-width: 992px) {
+    div.my-account {
+        grid-template-columns: 33vw 55vw;
+        grid-template-rows: 300px 300px;
+    }
+    
+}
+
+@media screen and (max-width: 768px) {
+    div.my-account {
+        display: block;
+    }
+
+    div.profile-info {
+        width: 88vw;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    div.profile-header {
+        height: 315px;
+    }
+
+    div.profile-menu.hide-profile-menu {
+        max-height: 0px;
+    }
+
+
+
+    div.product-buy, div.product-sell {
+        overflow-y: auto;
+        width: 88vw;
+        height: 60vh;
+        margin-bottom: 20px;
+    }
+    .user-menu-item button {
+        text-align: center !important;
+    }
+}
+
+
 /* ------ MESSAGES -------- */
 
 div.user-messages {
@@ -165,11 +211,31 @@ div.user-messages {
     0 25px 40px rgba(0, 0, 0, 0.12)
 }
 
+@media screen and (max-width: 768px) {
+    div.user-messages {
+        width: 88vw;
+        height: 80vh;
+    }
+}
+
+
 /* ------ SUMMARY -------- */
 
 div.user-summary {
     background-color: white;
     grid-row: 1/-1;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    5px 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    -5px -8.5px 10px rgba(0, 0, 0, 0.06),
+    0 11.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 11px 16px rgba(0, 0, 0, 0.086),
+    0 25px 40px rgba(0, 0, 0, 0.12)
+}
+
+@media screen and (max-width: 768px) {
+    div.user-summary {
+        height: 50vh;
+    }
 }
 
 /* ------ EDIT REGISTRATION -------- */
@@ -177,6 +243,7 @@ div.user-summary {
 div.user-edit-registration {
     background-color: white;
     grid-row: 1/-1;
+    padding: 10px;
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     5px 6.7px 5.3px rgba(0, 0, 0, 0.048),
     -5px -8.5px 10px rgba(0, 0, 0, 0.06),
@@ -186,7 +253,7 @@ div.user-edit-registration {
    
 }
 
-div.user-edit-registration .div-file {
+.div-file {
     display: inline-block;
     vertical-align: top;
     width: 60px; 
@@ -200,7 +267,7 @@ div.user-edit-registration .div-file {
 
 }
 
-div.user-edit-registration .profile-pic-view {
+.profile-pic-view {
     display: inline-block;
     width: 60px;
     height: 60px;
@@ -208,14 +275,14 @@ div.user-edit-registration .profile-pic-view {
     border-radius: 5px;
 }
 
-div.user-edit-registration .profile-pic-view img {
+.profile-pic-view img {
     width: 100%;
     height: 100%;
     border-radius: 5px;
     object-fit: cover;
 }
 
-div.user-edit-registration .div-file:hover {
+.div-file:hover {
     background-color: rgba(0,0,0,.25);
     cursor: pointer;
 }
@@ -225,5 +292,11 @@ div.user-edit-registration input[type="checkbox"] + label {
     margin-left: 10px;
 }
 
+@media screen and (max-width: 768px) {
+    div.user-edit-registration {
+        width: 88vw;
+        height: auto;
+    }
+}
 
 

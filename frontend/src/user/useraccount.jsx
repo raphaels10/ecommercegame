@@ -8,11 +8,11 @@ import History from './history'
 import Messages from './messages'
 import Summary from './summary'
 import EditRegistration from './editregistration'
-import {store} from '../index'
-import {push} from 'connected-react-router'
-import {PacmanLoader} from 'react-spinners'
+import { store } from '../index'
+import { push } from 'connected-react-router'
+import { PacmanLoader } from 'react-spinners'
 
-import { FaList, FaCoins, FaEnvelope, FaEdit, FaSignOutAlt } from 'react-icons/fa'
+import { FaList, FaCoins, FaEnvelope, FaEdit, FaSignOutAlt, FaAngleDown, FaAngleUp, FaClipboardList } from 'react-icons/fa'
 
 const BASE_URL = "http://localhost:3001"
 
@@ -25,20 +25,21 @@ function UserAccount(params) {
     const [content, setContent] = useState("history")
     const [profilePic, setProfilePic] = useState("")
     const [loading, setLoading] = useState(true)
+    const [menuOpen, setMenuOpen] = useState(false)
 
 
     useEffect(() => {
-        axios.post(`${BASE_URL}/userdata`, {token}, {withCredentials: true})
-        .then(r => {
-            if(r.data.profilePic) setProfilePic(r.data.profilePic)
-            setLoading(false)
-        })
-        .catch(e => {
-            console.log(e)
-            setLoading(false)
-            store.dispatch(push('/login'))
-        })
-    },[])
+        axios.post(`${BASE_URL}/userdata`, { token }, { withCredentials: true })
+            .then(r => {
+                if (r.data.profilePic) setProfilePic(r.data.profilePic)
+                setLoading(false)
+            })
+            .catch(e => {
+                console.log(e)
+                setLoading(false)
+                store.dispatch(push('/login'))
+            })
+    }, [])
 
 
 
@@ -53,24 +54,24 @@ function UserAccount(params) {
             case "messages":
                 return <Messages />
             case "editregistration":
-                return <EditRegistration/>
+                return <EditRegistration />
             case "summary":
-                return <Summary/>
+                return <Summary />
             default:
                 return <History />
         }
 
     }
 
-    if(loading) {
+    if (loading) {
         return (
             <div className="spinner-container">
-                    <PacmanLoader color="yellow" size={36}/>
+                <PacmanLoader color="yellow" size={36} />
             </div>
         )
     }
 
-   
+
 
 
 
@@ -86,42 +87,52 @@ function UserAccount(params) {
                             <h2>{params.user || "Usuário"}</h2>
                             <p>Vendas realizadas: 36</p>
                             <p>Avaliação média: 4.76/5.0</p>
+
+                            {menuOpen ?
+                                <button onClick={() => setMenuOpen(false)} className="btn bg-transparent p-0">
+                                    <FaAngleUp color="purple" size={40} className="d-md-none" />
+                                </button>
+                                :
+                                <button onClick={() => setMenuOpen(true)} className="btn bg-transparent p-0">
+                                    <FaAngleDown color="purple" size={40} className="d-md-none" />
+                                </button>
+                            }
                         </div>
                     </div>
                     <hr />
-                    <div className="profile-menu">
+                    <div className={`profile-menu ${!menuOpen ? "hide-profile-menu" : ""}`}>
                         <ul className="user-menu-list">
                             <li className="user-menu-item">
-                                <button type="button" onClick={() => setContent("history")} 
-                                className="btn bg-transparent">
+                                <button type="button" onClick={() => setContent("history")}
+                                    className="btn bg-transparent">
                                     <FaList color="black" /> Histórico
                                 </button>
                             </li>
                             <hr />
                             <li className="user-menu-item">
-                                <button type="button" onClick={() => setContent("summary")} 
-                                className="btn bg-transparent">
-                                    <FaCoins color="gold" /> Sumário
+                                <button type="button" onClick={() => setContent("summary")}
+                                    className="btn bg-transparent">
+                                    <FaClipboardList color="black" /> Resumo
                             </button>
                             </li>
                             <hr />
                             <li className="user-menu-item">
-                                <button type="button" onClick={() => setContent("messages")} 
-                                className="btn bg-transparent">
+                                <button type="button" onClick={() => setContent("messages")}
+                                    className="btn bg-transparent">
                                     <FaEnvelope color="blue" /> Mensagens
                             </button>
                             </li>
                             <hr />
                             <li className="user-menu-item">
                                 <button type="button" onClick={() => setContent("editregistration")}
-                                 className="btn bg-transparent">
+                                    className="btn bg-transparent">
                                     <FaEdit color="green" /> Editar cadastro
                             </button>
                             </li>
                             <hr />
                             <li className="user-menu-item">
-                                <button type="button" onClick={() => {params._logout()}} 
-                                className="btn bg-transparent">
+                                <button type="button" onClick={() => { params._logout() }}
+                                    className="btn bg-transparent">
                                     <FaSignOutAlt color="brown" /> Sair
                                 </button>
                             </li>
@@ -140,8 +151,8 @@ function UserAccount(params) {
 
 
 const mapStateToProps = state => ({
-     user: state.auth.user, 
-     validated: state.auth.validated
+    user: state.auth.user,
+    validated: state.auth.validated
 })
 const mapDispatchToProps = dispatch => ({
     _logout() {

@@ -85,4 +85,20 @@ h3.messages-subtitle {
     display: flex;
 }
 
+@media screen and (max-width: 768px) {
+    .single-message p {
+        font-size: 12px;
+        max-width: 60%;
+    }
+
+    .single-message.message-from-you span {
+        left: -110px;
+        font-size: 10px;
+    }
+    
+    .single-message.message-from-other span {
+        right: -110px;
+        font-size: 10px;
+    }
+}
 
