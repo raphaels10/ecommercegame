@@ -18,12 +18,24 @@
     width: 300px !important;
 }
 
-
-.dropdown-item a {
-    color: lightslategray;
+.dropdown-item {
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.dropdown-item a:hover {
+.dropdown-item a.anchor-dropdown {
+    color: lightslategray;
+    display: inline-block;
+    width: 100%;
+    box-sizing: content-box;
+    padding: .25rem 1.5rem;
+}
+
+
+
+.dropdown-item a.anchor-dropdown:hover {
     text-decoration: none;
    
 }
