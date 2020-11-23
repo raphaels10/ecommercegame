@@ -244,6 +244,25 @@
     display: inline-block;
 }
 
+@media screen and (max-width: 768px) {
+
+    .product-content {
+        padding: 50px 10px;
+    }
+
+    .game-product-container {
+        width: 95vw;
+    }
+    .game-image-container {
+        display: none;
+    }
+    .product-info-container {
+        width: 100%;
+    }
+
+
+}
+
 /**** COMMENTS *****/
 
 div.bottom-container {
@@ -279,4 +298,23 @@ div.comment-form button {
     border-radius: 5px;
     margin-left: 10px;
 }
+
+@media screen and (max-width: 768px) {
+    div.bottom-container {
+        width: 95vw;
+    }
+
+    div.comment-form {
+        width: 100%;
+    }
+    div.comment-form form {
+        flex-direction: column;
+        
+    }
+    div.comment-form button {
+        margin-left: 0px;
+    }
+
+}
+
 

@@ -42,6 +42,7 @@
 }
 
 .reply-form {
+    width: 75%;
     margin-left: 40px;
     display: flex;
     flex-direction: column;
@@ -53,4 +54,16 @@
 
 .reply-form .reply-buttons button{
     font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+    .reply-form {
+        margin-left:0px;
+    }
+    .reply-form .reply-buttons {
+        align-self: stretch;
+    }
+    .reply-form .reply-buttons button {
+        width: 50%;
+    }
 }
