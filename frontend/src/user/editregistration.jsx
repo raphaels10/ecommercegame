@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { storage } from '../firebase'
 import { connect } from 'react-redux'
-import { FaPlus } from 'react-icons/fa'
+import { FaPlus, FaRProject } from 'react-icons/fa'
 import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
 

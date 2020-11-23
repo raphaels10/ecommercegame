@@ -46,3 +46,24 @@ input.form-control:last-of-type {
     font-size: 14px;
 }
 
+/* SIGN UP */
+
+.form-signup .profile-pic-view {
+    position: relative;
+}
+
+.form-signup .profile-pic-view svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2px;
+    box-sizing: content-box;
+    border-radius: 5px;
+    background-color: rgba(255, 0, 0, .4);
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.form-signup .profile-pic-view svg:hover {
+    background-color: rgba(255, 0, 0, .8);
+}
