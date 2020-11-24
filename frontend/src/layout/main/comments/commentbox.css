@@ -13,6 +13,16 @@
     font-weight: 600;
     margin: 5px 0px;
 }
+.comment-box .comment-author > a {
+    text-decoration: none;
+    color: rgb(133,133,133);
+    transition: color 0.3s
+}
+
+.comment-box .comment-author > a:hover {
+    color: rgb(87,87,87);
+}
+
 
 .comment-box .comment-author span.comment-date {
     font-weight: normal;

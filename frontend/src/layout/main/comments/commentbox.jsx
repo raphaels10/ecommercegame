@@ -4,7 +4,7 @@ import './commentbox.css'
 const BASE_URL = "http://localhost:3001"
 
 function CommentBox (params) {
-    const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
+    const token = localStorage.getItem("user-session") ? JSON.parse(localStorage.getItem("user-session")).token : ''
     const { commentList, productId, refreshFunction} = params
     const [replyId, setReplyId] = useState("")
     const [replyText, setReplyText] = useState("")
@@ -32,7 +32,8 @@ function CommentBox (params) {
             <div key={comment._id} className="comment-box">
                 <div className="comment-header">
                     <p className="comment-author">
-                        {comment.author} <span className="comment-date">{parseDate(comment.createdAt)}</span>
+                       <a href={`/users/${comment.author}`}>{comment.author}</a>
+                       <span className="comment-date">{parseDate(comment.createdAt)}</span>
                     </p>
                 </div>
                 <p className="comment-text">{comment.text}</p>

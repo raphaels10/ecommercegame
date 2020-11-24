@@ -5,7 +5,7 @@ const BASE_URL = "http://localhost:3001"
 
 function SubmitComment(params) {
 
-    const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
+    const token = localStorage.getItem("user-session") ? JSON.parse(localStorage.getItem("user-session")).token : ''
     const { productId, refreshFunction } = params
     const [commentText, setCommentText] = useState("")
 
