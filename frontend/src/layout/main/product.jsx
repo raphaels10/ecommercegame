@@ -2,6 +2,7 @@ import React from 'react'
 import './product.css'
 import { Link } from 'react-router-dom'
 import {Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap'
+import getGameImage from '../../common/functions/getgameimage'
 
 
 export default params => {
@@ -9,12 +10,12 @@ export default params => {
     const outline = params.outline ? `outline-${params.outline}` : ""
     const link = `/products/${params.link}`
     const mini = params.mini ? "card-mini" : "";
-    
+    const image = params.image || getGameImage(params.title.toLowerCase())
 
     return (
         <>
             <Card className={`card-fixed-size ${outline} ${mini}`} style={{backgroundColor: color}}>
-                <CardImg className="card-img-fixed-size" src={params.image} alt={params.alt}/>
+                <CardImg className="card-img-fixed-size" src={image} alt={params.alt}/>
                 <CardBody className="card-body-custom">
                     <CardTitle className="card-title-custom">{params.title}</CardTitle>
                     <CardSubtitle className="card-title-custom mb-3">{params.subtitle}</CardSubtitle>
