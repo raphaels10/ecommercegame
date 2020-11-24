@@ -1,6 +1,7 @@
 const User = require('../database/user')
 const jwt = require('jsonwebtoken')
 const env = require('../.env')
+const parseErrors = require('../errorhandlers/validation')
 
 module.exports = (req, res, next) => {
 
@@ -18,8 +19,22 @@ module.exports = (req, res, next) => {
                 messages: [conversation.message]
             }
         }
+    }, {
+        runValidators: true
     }).then(r => res.send("Sucesso!"))
-        .catch(r => res.status(400).json({ error: ['Database update failed'] }))
+        .catch(e => {
+            try {
+                if(e.errors.messages.errors) {
+                    return res.status(401).json({error: ["Os campos de título e texto são obrigatórios"]})
+                }
+                else {
+                    return res.status(400).json({ error: ['Database update failed'] })
+                }
+            }
+            catch(err){
+                return res.status(400).json({ error: ['Database update failed'] })
+            }
+        })
 
 
 

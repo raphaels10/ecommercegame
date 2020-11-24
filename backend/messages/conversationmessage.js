@@ -15,7 +15,7 @@ function post(req, res, next) {
 
             User.updateMany({ "messages._id": conversationId }, {
                 $push: { "messages.$.messages": { text: message, from: decoded.user.username } }
-            })
+            }, {runValidators: true})
                 .then(r => res.json(r))
                 .catch(e => res.status(403).json({error: ["Forbidden"]}))
 
