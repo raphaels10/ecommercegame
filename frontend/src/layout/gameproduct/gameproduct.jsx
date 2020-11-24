@@ -5,6 +5,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { FaAngleDown, FaPencilAlt, FaShoppingCart, FaMinus, FaPlus } from 'react-icons/fa'
 import './gameproduct.css'
+import getGameImage from '../../common/functions/getgameimage'
 import { useCookies } from 'react-cookie'
 
 import CommentBox from '../main/comments/commentbox'
@@ -15,7 +16,7 @@ import '../../common/styles/buttoncontainer.css'
 const BASE_URL = "http://localhost:3001"
 
 function GameProduct(params) {
-    const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
+    const token = localStorage.getItem("user-session") ? JSON.parse(localStorage.getItem("user-session")).token : ''
 
     const [cookies, setCookie] = useCookies(["cart"])
     const { id } = params.match.params
@@ -28,6 +29,9 @@ function GameProduct(params) {
     const [description, setDescription] = useState("")
     const [quantity, setQuantity] = useState(0)
     const [price, setPrice] = useState(0)
+    const [usePlaceholder, setUsePlaceholder] = useState(false)
+    const [images, setImages] = useState([])
+
 
 
 
@@ -39,7 +43,7 @@ function GameProduct(params) {
     function setCart() {
         const cartProduct = {
             name: product.name, game: product.game, quantity: quantityCounter,
-            value: quantityCounter * product.price, id: product._id, image: product.images[0]
+            value: quantityCounter * product.price, id: product._id, image: images[0]
         }
         if (user === product.seller) {
             toastr.error("Erro", "Você não pode adicionar um produto seu ao carrinho")
@@ -73,12 +77,21 @@ function GameProduct(params) {
                 setProduct(r.data)
                 setDescription(r.data.description)
                 setQuantity(r.data.stock)
-                setPrice(r.data.price)
-                console.log(r.data.price)
-                console.log(typeof r.data.price)
+                setPrice(r.data.price)     
+                if (r.data.images.length === 0) {
+                    try {
+                        const placeholderimg = getGameImage(r.data.game.toLowerCase())
+                        setImages([placeholderimg])
+                    }
+                    catch(e) {
+                        setImages(r.data.images)
+                    }
+                }
+                else {
+                    setImages(r.data.images)
+                }
             })
             .catch(e => {
-                console.log("Erro")
                 console.log(e.response)
             })
     }
@@ -86,8 +99,6 @@ function GameProduct(params) {
     function updateProduct(event, trigger) {
         event.preventDefault()
         const productId = product._id
-        console.log(price)
-        console.log(typeof price)
 
         axios.put(`${BASE_URL}/products`, { csrf_token: token, price, quantity, description, productId}, 
         {withCredentials: true})
@@ -113,9 +124,9 @@ function GameProduct(params) {
                 <div className="game-product-container">
                     <div className="inner-container">
                         <div className="game-image-container">
-                            <img src={product.images[imageIndex]} alt={product.game}></img>
+                            <img src={images[imageIndex]} alt={product.game}></img>
                             <div className="image-list">
-                                {product.images.map((image, index) => (
+                                {images.map((image, index) => (
                                     <div key={index}
                                         className={`image-thumb ${imageIndex === index ? "active-image" : ""}`}>
                                         <button className="image-selector" onClick={() => setImageIndex(index)}>
