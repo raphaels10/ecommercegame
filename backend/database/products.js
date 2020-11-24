@@ -16,8 +16,8 @@ const CommentarySchema = new mongoose.Schema({
 })
 
 const ProductSchema = new mongoose.Schema({
-    game: {type: String, required: [true, "Campo jogo obrigatório"]},
-    name: {type: String, required: [true, "Campo nome obrigatório"]},
+    game: {type: String, required: [true, "Campo jogo obrigatório"], minlength: [2, "Nome do jogo precisa ter pelo menos 2 caracteres"], maxlength: 40},
+    name: {type: String, required: [true, "Campo nome obrigatório"], minlength: [2, "Nome do produto precisa ter pelo menos 2 caracteres"], maxlength: 30},
     price: {type: Number, required: [true, "Campo preço obrigatório"], min: [0, "Preço deve ser zero ou mais"]},
     description: {type: String, required: [true, "Campo descrição obrigatório"]},
     stock: {type: Number, required: [true, "Campo estoque obrigatório"], min: [1, "Estoque deve ser maior ou igual a 1"]},

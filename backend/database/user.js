@@ -5,14 +5,14 @@ const database = require('./database.js')
 const messageSchema = new mongoose.Schema({
     createdAt: {type: Date, default: Date.now },
     from: {type: String, required: true },
-    text: {type: String, required: true}
+    text: {type: String, required: [true, "Texto é obrigatório"]}
 })
 
 
 const conversationSchema = new mongoose.Schema({
     from: { type: String, required: true },
     to: { type: String, required: true },
-    title: {type: String, required: true},
+    title: {type: String, required: [true, "Título é obrigatório!"]},
     messages: [messageSchema]
 })
 
