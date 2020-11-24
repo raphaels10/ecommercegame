@@ -4,6 +4,7 @@ import OtherUserProducts from './otheruserproducts'
 import { FaEnvelope } from 'react-icons/fa'
 import { connect } from 'react-redux'
 import { PacmanLoader } from 'react-spinners'
+import {toastr} from 'react-redux-toastr'
 import './otheruser.css'
 import axios from 'axios'
 const BASE_URL = "http://localhost:3001"
@@ -18,7 +19,7 @@ function OtherUser(params) {
     const [loading, setLoading] = useState(true)
     const [userProfilePic, setUserProfilePic] = useState("")
 
-    const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
+    const token = localStorage.getItem("user-session") ? JSON.parse(localStorage.getItem("user-session")).token : ''
 
 
 
@@ -64,8 +65,18 @@ function OtherUser(params) {
         .then(r => {
             console.log(r.data)
             setModalVisibility(false)
+            setTitle("")
+            setText("")
         })
-        .catch(e => console.log(e.response))
+        .catch(e => {
+            try {
+                const errors = e.response.data.error
+                errors.forEach(e => toastr.error("Erro", e))
+            }
+            catch(e) {
+                toastr.error("Erro", "Não foi possível enviar a mensagem, tente novamente mais tarde")
+            }
+        })
     }
 
 
