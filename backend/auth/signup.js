@@ -8,7 +8,7 @@ const parseValidationErrors = require('../errorhandlers/validation')
 
 
 const email_regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
-const pass_regex = /^\S{6,20}$/
+const pass_regex = /^\S{8,20}$/
 
 
 
@@ -20,7 +20,7 @@ module.exports = async (req, res, next) => {
     const confirmPassword = req.body.confirmPassword || ''
     const fileURL = req.body.fileURL || ''
 
-    if (!password.match(pass_regex)) return res.status(400).send({error: ["Senha deve ter de 6 a 20 dígitos"]})
+    if (!password.match(pass_regex)) return res.status(400).send({error: ["Senha deve ter de 8 a 20 dígitos"]})
     if (!email.match(email_regex)) return res.status(400).send({error: ["E-mail inválido"]})
      
     const hashedPassword = await bcrypt.hash(password, 10)
