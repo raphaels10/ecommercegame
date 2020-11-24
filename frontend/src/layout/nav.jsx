@@ -14,7 +14,8 @@ import If from '../operators/if'
 function NavBar(params) {
     const [isOpen, setIsOpen] = useState(false)
     const [searchedProduct, setSearchedProduct] = useState("")
-    const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
+    const token = localStorage.getItem("user-session") ? JSON.parse(localStorage.getItem("user-session")).token : ''
+
     useEffect(() => {
         params.verifyToken(token)
 

@@ -20,7 +20,7 @@ const BASE_URL = "http://localhost:3001"
 
 function UserAccount(params) {
     const validated = params.validated
-    const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
+    const token = localStorage.getItem("user-session") ? JSON.parse(localStorage.getItem("user-session")).token : ''
 
     const [content, setContent] = useState("history")
     const [profilePic, setProfilePic] = useState("")

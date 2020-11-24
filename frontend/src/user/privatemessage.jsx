@@ -12,11 +12,11 @@ function PrivateMessage(params) {
     const [isNewMsg, setIsNewMsg] = useState(false)
     const lastmessage = useRef(null)
 
-    const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
+    const token = localStorage.getItem("user-session") ? JSON.parse(localStorage.getItem("user-session")).token : ''
 
     const { message_id } = params
     useEffect(() => {
-        const interval_message = setInterval(getMessages, 1500)
+        const interval_message = setInterval(getMessages, 900)
         getMessages("init")
         return () => clearInterval(interval_message)
     }, [])

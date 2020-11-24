@@ -9,7 +9,7 @@ const monthNames = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
 ];
 
 function Messages(params) {
-    const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
+    const token = localStorage.getItem("user-session") ? JSON.parse(localStorage.getItem("user-session")).token : ''
     const [messagesReceived, setMessagesReceived] = useState([])
     const [pageContent, setPageContent] = useState("overall")
     const [currentConversation, setCurrentConversation] = useState("")

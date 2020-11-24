@@ -17,7 +17,7 @@ function EditRegistration(params) {
     const [newPass, setNewPass] = useState("")
     const [confirmNewPass, setConfirmNewPass] = useState("")
 
-    const { token } = JSON.parse(localStorage.getItem("user-session")) || ''
+    const token = localStorage.getItem("user-session") ? JSON.parse(localStorage.getItem("user-session")).token : ''
 
 
     function handleNewProfilePic(e) {
