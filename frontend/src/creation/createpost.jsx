@@ -1,12 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { BounceLoader } from 'react-spinners'
 import { toastr } from 'react-redux-toastr'
 import { push } from 'connected-react-router'
 import { connect } from 'react-redux'
+import {validateToken} from '../auth/authActions'
 
 import './createpost.css'
 import './theme.css'
 
+import {PacmanLoader} from 'react-spinners'
 import AutoSuggest from 'react-autosuggest'
 import {storage} from '../firebase'
 import axios from 'axios'
@@ -28,6 +30,7 @@ const gameList = [
 
 function CreatePost (params) {
     const [loading, setLoading] = useState(false)
+    const [initialLoading, setInitialLoading] = useState(true)
     const [game, setGame] = useState("")
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
@@ -35,8 +38,29 @@ function CreatePost (params) {
     const [price, setPrice] = useState(0)
     const [files, setFiles] = useState([])
     const [filesURL, setFilesURL] = useState([])
-
     const [suggestions, setSuggestions] = useState([])
+
+    const token = localStorage.getItem("user-session") ? JSON.parse(localStorage.getItem("user-session")).token : ''
+
+    
+    useEffect(() => {
+        axios.post(`${BASE_URL}/validateToken`, { token }, { withCredentials: true })
+        .then(r => {
+            setInitialLoading(false)
+        })
+        .catch(e => {
+            params._push("/login")
+        })
+    }, [])
+
+    if(initialLoading) {
+        return (
+            <div className="spinner-container">
+                <PacmanLoader color="yellow" size={36} />
+            </div>
+        )
+    }
+
 
     async function onSubmit(e) {
         setLoading(true)
@@ -53,7 +77,6 @@ function CreatePost (params) {
                 return
             }
         }
-        const token = JSON.parse(localStorage.getItem("user-session")).token || ''
         axios.post(`${BASE_URL}/products`,
          JSON.stringify({csrf_token: token, name, game, description, stock, price, images: arrayFromFilesURL}), {
             headers: {
@@ -142,6 +165,8 @@ function CreatePost (params) {
         setSuggestions([])
     }
 
+    
+
     return (
         <div className={loading ? "transparent" : ""}>
             <div className="loader-container">
@@ -226,7 +251,11 @@ function CreatePost (params) {
 const mapDispatchToProps = dispatch => ({
     _push(value){
         dispatch(push(value))
+    },
+    verifyToken(token){
+        dispatch(validateToken(token))
     }
+
 })
 
 const mapStateToProps = state => ({productsAdded: state.auth.productsAdded})
